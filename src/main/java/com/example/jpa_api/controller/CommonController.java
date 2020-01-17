@@ -2,6 +2,7 @@ package com.example.jpa_api.controller;
 
 import com.example.jpa_api.jpa.entity.Users;
 import com.example.jpa_api.jpa.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CommonController {
 
+    @Autowired
     private UserService userService;
-
-    CommonController(UserService userService){
-        this.userService = userService;
-    }
 
     @GetMapping(value = "") // 2
     public String homePage(Model model) {
@@ -31,7 +29,7 @@ public class CommonController {
     @PostMapping("/login")
     public String login(@ModelAttribute Users users){
         //등록
-        userService.regist(users);
+        userService.create(users);
         return "main";
     }
 }

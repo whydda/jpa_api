@@ -3,10 +3,8 @@ package com.example.jpa_api.jpa.entity;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -26,10 +24,19 @@ public class Users {
     private String id;
 
     @NotNull
-    @Column(name = "pass")
-    private String pass;
+    @Column(name = "password")
+    private String password;
 
+    @NotNull
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ROLE_USER;
+
+    @Column(name = "last_login_time")
+    private LocalDateTime lastLoginTime;
 
 //    @OneToMany
 //    private

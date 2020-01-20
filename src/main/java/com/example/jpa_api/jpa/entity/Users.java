@@ -38,6 +38,14 @@ public class Users {
     @Column(name = "last_login_time")
     private LocalDateTime lastLoginTime;
 
+//    public Users(String id, String password, String name, Role roleUser, LocalDateTime lastLoginTime) {
+//        this.id = id;
+//        this.password = password;
+//        this.name = name;
+//        this.role = roleUser;
+//        this.lastLoginTime = lastLoginTime;
+//    }
+
 //    @OneToMany
 //    private
 

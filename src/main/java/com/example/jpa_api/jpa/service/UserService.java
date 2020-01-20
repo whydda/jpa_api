@@ -24,13 +24,17 @@ public class UserService {
 
     @Transactional
     public Users create(Users users) {
-        users.setLastLoginTime(LocalDateTime.now());
         userRepository.save(users);
         return users;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Users selectUser(String id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(messageSourceService.getMessage("user.not.exist")));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Users> selectUserList() {
+        return userRepository.findAll();
     }
 }

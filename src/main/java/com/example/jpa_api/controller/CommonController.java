@@ -30,12 +30,6 @@ public class CommonController {
     @Autowired
     private UserService userService;
 
-
-    @GetMapping(value = "") // 2
-    public String homePage(Model model) {
-        return "index"; // 4
-    }
-
     @GetMapping("/regist")
     public ResponseEntity<Map<String, Object>> regist(@ModelAttribute Users users){
         Map<String, Object> params = new HashMap<>();

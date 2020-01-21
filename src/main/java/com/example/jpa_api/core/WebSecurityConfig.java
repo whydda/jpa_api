@@ -1,6 +1,7 @@
 package com.example.jpa_api.core;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,7 +13,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/static/css/**, /static/js/**, *.ico");		// Resources 파일이나 Javascript 파일 경로 무시
+		web.ignoring()
+				.antMatchers(HttpMethod.OPTIONS, "*//**")
+				.antMatchers("/resources/static/**")
+				.antMatchers("/css*//**")
+				.antMatchers("/fonts*//**")
+				.antMatchers("/img*//**")
+				.antMatchers("/js*//**")
+				.antMatchers("/index.html")
+				.antMatchers("/robots.txt");
 	}
 
 	@Override
